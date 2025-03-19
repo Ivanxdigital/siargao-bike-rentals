@@ -26,6 +26,7 @@ export default ({ config }: ConfigContext): ExpoConfig => {
         NSLocationWhenInUseUsageDescription:
           'This app uses your location to find bike rentals near you.',
       },
+      bundleIdentifier: 'com.siargaobikerentals.app',
     },
     android: {
       adaptiveIcon: {
@@ -33,13 +34,28 @@ export default ({ config }: ConfigContext): ExpoConfig => {
         backgroundColor: '#ffffff',
       },
       permissions: ['ACCESS_FINE_LOCATION'],
+      package: 'com.siargaobikerentals.app',
     },
     web: {
       bundler: 'metro',
       output: 'single',
       favicon: './assets/images/favicon.png',
     },
-    plugins: ['expo-router', 'expo-location'],
+    plugins: [
+      'expo-router', 
+      'expo-location',
+      [
+        'expo-linking',
+        {
+          prefixes: ['siargaobikerentals://', 'https://siargaobikerentals.app'],
+          screens: {
+            ResetPassword: {
+              path: 'auth/reset-password',
+            },
+          },
+        },
+      ],
+    ],
     experiments: {
       typedRoutes: true,
     },

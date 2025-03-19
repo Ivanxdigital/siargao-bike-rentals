@@ -4,7 +4,7 @@
 - [x] Initialize Supabase project
 - [x] Set up environment variables for Supabase credentials
 - [x] Update app.json with proper app name and details
-- [ ] Configure app permissions for location services
+- [x] Configure app permissions for location services
 
 ## 2. Database Design & Setup
 - [x] Design database schema
@@ -20,10 +20,10 @@
 
 ## 3. Authentication & User Management
 - [x] Implement Supabase authentication
-- [ ] Create sign-up and login screens
-- [ ] Implement role-based registration flows
-- [ ] Add profile management functionality
-- [ ] Implement password reset and account recovery
+- [x] Create sign-up and login screens
+- [x] Implement role-based registration flows
+- [x] Add profile management functionality
+- [x] Implement password reset and account recovery
 - [ ] Set up admin dashboard for user management
 
 ## 4. Core Functionality: Rental Shop Features

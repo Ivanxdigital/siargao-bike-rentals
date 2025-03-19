@@ -1,6 +1,8 @@
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Image } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Settings, LogOut, ChevronRight, Bell, Shield, CircleHelp as HelpCircle, Star } from 'lucide-react-native';
+import { useRouter } from 'expo-router';
+import { useAuth } from '../../contexts/AuthContext';
 
 const PROFILE_SECTIONS = [
   {
@@ -23,6 +25,31 @@ const PROFILE_SECTIONS = [
 ];
 
 export default function ProfileScreen() {
+  const router = useRouter();
+  const { user, signOut } = useAuth();
+
+  const handleLogout = async () => {
+    await signOut();
+    router.replace('/auth/login');
+  };
+
+  const handleEditProfile = () => {
+    router.push('/profile/edit' as any);
+  };
+
+  const handleMenuItemPress = (route: string) => {
+    // To be implemented when these screens are created
+    console.log(`Navigate to: ${route}`);
+  };
+
+  // Use placeholder if user data is not available yet
+  const userName = user?.user_metadata?.first_name && user?.user_metadata?.last_name
+    ? `${user.user_metadata.first_name} ${user.user_metadata.last_name}`
+    : "User";
+  
+  const userEmail = user?.email || "user@example.com";
+  const avatarUrl = user?.user_metadata?.avatar_url || 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=300&q=80';
+
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView showsVerticalScrollIndicator={false}>
@@ -32,14 +59,14 @@ export default function ProfileScreen() {
 
         <View style={styles.profileCard}>
           <Image
-            source={{ uri: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=300&q=80' }}
+            source={{ uri: avatarUrl }}
             style={styles.avatar}
           />
           <View style={styles.profileInfo}>
-            <Text style={styles.name}>John Doe</Text>
-            <Text style={styles.email}>john.doe@example.com</Text>
+            <Text style={styles.name}>{userName}</Text>
+            <Text style={styles.email}>{userEmail}</Text>
           </View>
-          <TouchableOpacity style={styles.editButton}>
+          <TouchableOpacity style={styles.editButton} onPress={handleEditProfile}>
             <Text style={styles.editButtonText}>Edit Profile</Text>
           </TouchableOpacity>
         </View>
@@ -53,7 +80,8 @@ export default function ProfileScreen() {
                 style={[
                   styles.menuItem,
                   index === section.items.length - 1 && styles.menuItemLast,
-                ]}>
+                ]}
+                onPress={() => handleMenuItemPress(item.route)}>
                 <View style={styles.menuItemContent}>
                   <item.icon size={20} color="#666" />
                   <Text style={styles.menuItemText}>{item.label}</Text>
@@ -64,7 +92,7 @@ export default function ProfileScreen() {
           </View>
         ))}
 
-        <TouchableOpacity style={styles.logoutButton}>
+        <TouchableOpacity style={styles.logoutButton} onPress={handleLogout}>
           <LogOut size={20} color="#FF4B55" />
           <Text style={styles.logoutText}>Log Out</Text>
         </TouchableOpacity>
