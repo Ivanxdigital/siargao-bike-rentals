@@ -1,7 +1,6 @@
 import { Tabs } from 'expo-router';
 import { Home, Search, Heart, User } from 'lucide-react-native';
-import { StyleSheet, View, Dimensions } from 'react-native';
-import { BlurView } from 'expo-blur';
+import { StyleSheet, View, Platform } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 export default function TabLayout() {
@@ -12,18 +11,37 @@ export default function TabLayout() {
       screenOptions={{
         headerShown: false,
         tabBarStyle: {
-          ...styles.tabBar,
+          position: 'absolute',
+          backgroundColor: '#FFFFFF', // Solid white
+          borderTopWidth: 0,
+          elevation: 0,
           height: 70 + (insets.bottom > 0 ? insets.bottom - 10 : 0),
           paddingBottom: insets.bottom > 0 ? insets.bottom - 10 : 10,
+          borderTopLeftRadius: 20,
+          borderTopRightRadius: 20,
+          ...Platform.select({
+            ios: {
+              shadowColor: '#000',
+              shadowOffset: { width: 0, height: -3 },
+              shadowOpacity: 0.1,
+              shadowRadius: 3,
+            },
+            android: {
+              elevation: 8,
+            },
+          }),
         },
-        tabBarBackground: () => (
-          <View style={styles.tabBarBackground} />
-        ),
         tabBarActiveTintColor: '#FF6B00',
         tabBarInactiveTintColor: '#A0A0A0',
-        tabBarLabelStyle: styles.tabBarLabel,
-        tabBarItemStyle: styles.tabBarItem,
-        tabBarShowLabel: true,
+        tabBarLabelStyle: {
+          fontFamily: 'Inter-Medium',
+          fontSize: 12,
+          marginTop: 2,
+        },
+        tabBarItemStyle: {
+          height: 50,
+          paddingTop: 8,
+        },
       }}>
       <Tabs.Screen
         name="index"
@@ -74,32 +92,6 @@ export default function TabLayout() {
 }
 
 const styles = StyleSheet.create({
-  tabBar: {
-    position: 'absolute',
-    borderTopWidth: 0,
-    elevation: 0,
-    backgroundColor: 'transparent',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: -3 },
-    shadowOpacity: 0.05,
-    shadowRadius: 8,
-  },
-  tabBarBackground: {
-    ...StyleSheet.absoluteFillObject,
-    borderTopLeftRadius: 20,
-    borderTopRightRadius: 20,
-    overflow: 'hidden',
-    backgroundColor: '#FFFFFF',
-  },
-  tabBarLabel: {
-    fontFamily: 'Inter-Medium',
-    fontSize: 12,
-    marginTop: 2,
-  },
-  tabBarItem: {
-    height: 50,
-    paddingTop: 8,
-  },
   activeIconContainer: {
     backgroundColor: 'rgba(255, 107, 0, 0.1)',
     borderRadius: 10,
