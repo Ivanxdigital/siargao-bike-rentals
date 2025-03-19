@@ -1,25 +1,25 @@
 # Bike Rental App Development Roadmap
 
 ## 1. Project Setup & Configuration
-- [ ] Initialize Supabase project
-- [ ] Set up environment variables for Supabase credentials
-- [ ] Update app.json with proper app name and details
+- [x] Initialize Supabase project
+- [x] Set up environment variables for Supabase credentials
+- [x] Update app.json with proper app name and details
 - [ ] Configure app permissions for location services
 
 ## 2. Database Design & Setup
-- [ ] Design database schema
-  - [ ] Users table with role field (regular, rental shop, admin)
-  - [ ] Rental shops table
-  - [ ] Bikes table with categories and specifications
-  - [ ] Rentals table for tracking bookings
-  - [ ] Reviews table for shop/bike ratings
-  - [ ] Favorites table to track user's saved bikes
-- [ ] Set up Supabase tables and relationships
-- [ ] Create initial seed data for testing
-- [ ] Configure row-level security (RLS) policies for different user roles
+- [x] Design database schema
+  - [x] Users table with role field (regular, rental shop, admin)
+  - [x] Rental shops table
+  - [x] Bikes table with categories and specifications
+  - [x] Rentals table for tracking bookings
+  - [x] Reviews table for shop/bike ratings
+  - [x] Favorites table to track user's saved bikes
+- [x] Set up Supabase tables and relationships
+- [x] Create initial seed data for testing
+- [x] Configure row-level security (RLS) policies for different user roles
 
 ## 3. Authentication & User Management
-- [ ] Implement Supabase authentication
+- [x] Implement Supabase authentication
 - [ ] Create sign-up and login screens
 - [ ] Implement role-based registration flows
 - [ ] Add profile management functionality
@@ -35,18 +35,18 @@
 - [ ] Add notification system for rental requests
 
 ## 5. Core Functionality: Regular User Features
-- [ ] Enhance home screen with real data from Supabase
-- [ ] Implement location-based shop and bike discovery
-- [ ] Build search functionality with filters
-- [ ] Create bike detail screen with specs and availability
+- [x] Enhance home screen with real data from Supabase
+- [x] Implement location-based shop and bike discovery
+- [x] Build search functionality with filters
+- [x] Create bike detail screen with specs and availability
 - [ ] Implement booking/reservation system
 - [ ] Add payment gateway integration
 - [ ] Build favorites system with persistence
 - [ ] Create rental history screen
 
 ## 6. Review System
-- [ ] Design and implement review submission UI
-- [ ] Create rating system (star ratings, comments)
+- [x] Design and implement review submission UI
+- [x] Create rating system (star ratings, comments)
 - [ ] Build review moderation for admins
 - [ ] Add review sorting and filtering
 - [ ] Implement review metrics and analytics for shop owners
@@ -59,15 +59,15 @@
 - [ ] Create content moderation system
 
 ## 8. Map Integration & Location Services
-- [ ] Integrate maps for shop discovery
-- [ ] Implement geolocation for nearby shops
+- [x] Integrate maps for shop discovery
+- [x] Implement geolocation for nearby shops
 - [ ] Add directions to rental locations
 - [ ] Create location-based search and filtering
 
 ## 9. UI/UX Refinement
-- [ ] Refine and polish all screens
-- [ ] Implement loading states and transitions
-- [ ] Add empty states for lists
+- [x] Refine and polish all screens
+- [x] Implement loading states and transitions
+- [x] Add empty states for lists
 - [ ] Create error handling and user feedback
 - [ ] Implement dark mode support
 - [ ] Ensure accessibility compliance

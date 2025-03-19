@@ -5,6 +5,8 @@ import { useFrameworkReady } from '@/hooks/useFrameworkReady';
 import { useFonts, Poppins_400Regular, Poppins_500Medium, Poppins_600SemiBold, Poppins_700Bold } from '@expo-google-fonts/poppins';
 import { Inter_400Regular, Inter_500Medium } from '@expo-google-fonts/inter';
 import { SplashScreen } from 'expo-router';
+import { AuthProvider } from '../contexts/AuthContext';
+import { RequireAuth } from '../components/RequireAuth';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -31,11 +33,15 @@ export default function RootLayout() {
   }
 
   return (
-    <>
-      <Stack screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-      </Stack>
-      <StatusBar style="dark" />
-    </>
+    <AuthProvider>
+      <RequireAuth>
+        <Stack screenOptions={{ headerShown: false }}>
+          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+          <Stack.Screen name="auth/login" options={{ headerShown: false }} />
+          <Stack.Screen name="auth/register" options={{ headerShown: false }} />
+        </Stack>
+        <StatusBar style="dark" />
+      </RequireAuth>
+    </AuthProvider>
   );
 }
