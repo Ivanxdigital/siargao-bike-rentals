@@ -17,9 +17,7 @@ export default function TabLayout() {
           paddingBottom: insets.bottom > 0 ? insets.bottom - 10 : 10,
         },
         tabBarBackground: () => (
-          <View style={styles.tabBarBackground}>
-            <BlurView intensity={50} tint="light" style={StyleSheet.absoluteFill} />
-          </View>
+          <View style={styles.tabBarBackground} />
         ),
         tabBarActiveTintColor: '#FF6B00',
         tabBarInactiveTintColor: '#A0A0A0',
@@ -91,7 +89,7 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
     overflow: 'hidden',
-    backgroundColor: 'rgba(255, 255, 255, 0.85)',
+    backgroundColor: '#FFFFFF',
   },
   tabBarLabel: {
     fontFamily: 'Inter-Medium',
