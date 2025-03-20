@@ -79,13 +79,28 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   // Get user role from the database
   const getUserRole = async (userId: string) => {
     try {
+      // First try to get role from user metadata (which doesn't need table permission)
+      const { data: userData } = await supabase.auth.getUser();
+      
+      if (userData?.user?.user_metadata?.role) {
+        const userRole = userData.user.user_metadata.role;
+        setIsShopOwner(userRole === 'rental_shop');
+        setIsAdmin(userRole === 'admin');
+        return;
+      }
+      
+      // If not in metadata, try from database
       const { data, error } = await supabase
         .from('users')
         .select('role')
         .eq('id', userId)
         .single();
       
-      if (error) throw error;
+      if (error) {
+        console.warn('Error getting user role from database:', error.message);
+        // If RLS error, we can try a different approach or just use what's in auth
+        return;
+      }
       
       setIsShopOwner(data?.role === 'rental_shop');
       setIsAdmin(data?.role === 'admin');
